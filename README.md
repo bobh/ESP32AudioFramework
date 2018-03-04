@@ -28,8 +28,6 @@ Concurrency examples include:
 * Continuous phase frequency sweep test signal (300--3000 Hz in 5 sec.,repeated)
 * Microphone talk-through
 
-github:
-
 __________________________________________________________________
 
 
