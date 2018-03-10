@@ -27,6 +27,7 @@ Concurrency examples include:
 * Dual tone (frequencies re-create old telephone dial tone)
 * Continuous phase frequency sweep test signal (300--3000 Hz in 5 sec.,repeated)
 * Microphone talk-through
+* Pink Noise example from portaudio.com
 
 __________________________________________________________________
 
