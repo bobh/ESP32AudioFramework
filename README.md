@@ -81,5 +81,7 @@ mic audio is on analogRead(34)
 ADC_WIDTH_9Bit to more or less match the DAC 8 bits.
 An ADC_ATTEN_11db pad is set in order to run the mic at 3.3 Volts
 
+3/10/18 Pink Noise example from portaudio.com modified for ESP32 Audio Framework. Statistics haven't been verified with spectrum analyzer.
+
 ![BlockDiagram](/ESP32AudioFrameworkBlock.png)
 # ESP32_AudioFramework
