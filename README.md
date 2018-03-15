@@ -85,7 +85,7 @@ An ADC_ATTEN_11db pad is set in order to run the mic at 3.3 Volts
 3/10/18 Pink Noise example from portaudio.com modified for ESP32 Audio Framework. Statistics haven't been verified with spectrum analyzer.
 
 3/15/18 modified sine generator with nkolban's BLE library. Select freq of sine over BLE (30-3000 Hz UTF-8 
-unsigned int string < 5 chars).
+unsigned int string < 5 chars).   https://youtu.be/MGNU7COFlT4
 
 ![BlockDiagram](/ESP32AudioFrameworkBlock.png)
 # ESP32_AudioFramework
