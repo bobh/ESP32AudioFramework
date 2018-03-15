@@ -74,6 +74,7 @@ anti-aliasing filter (LPF) with 4KHz cutoff
 Add a 47pF cap across R5 (820K). From JP1-3 to U1-4 is easier.
 We would like a 2nd order filter here (40 dB/Decade power drop-off).
  https://cdn.sparkfun.com/datasheets/BreakoutBoards/Electret_Microphone_Breakout_v20.pdf
+
 note: this circuit could be avoided by sampling at 16Ksps
 
 
@@ -82,6 +83,7 @@ ADC_WIDTH_9Bit to more or less match the DAC 8 bits.
 An ADC_ATTEN_11db pad is set in order to run the mic at 3.3 Volts
 
 3/10/18 Pink Noise example from portaudio.com modified for ESP32 Audio Framework. Statistics haven't been verified with spectrum analyzer.
+
 3/15/18 modified sine generator with nkolban's BLE library. Select freq of sine over BLE (30-3000 Hz UTF-8 
 unsigned int string < 5 chars).
 
