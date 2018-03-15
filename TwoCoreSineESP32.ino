@@ -3,6 +3,14 @@
 //  twitter: @wm6h
 //  rev: 20180304
 
+/*
+    Based on Neil Kolban example for IDF: https://github.com/nkolban/esp32-snippets/blob/master/cpp_utils/tests/BLE%20Tests/SampleWrite.cpp
+    Ported to Arduino ESP32 by Evandro Copercini
+*/
+
+#include <BLEDevice.h>
+#include <BLEUtils.h>
+#include <BLEServer.h>
 
 /*
    Two core ESP-32 Arduino real-time audio demo.
@@ -17,6 +25,10 @@
 
 #include <Arduino.h>
 #include <driver/adc.h>
+
+
+#define SERVICE_UUID        "4fafc201-1fb5-459e-8fcc-c5c9c331914b"
+#define CHARACTERISTIC_UUID "beb5483e-36e1-4688-b7f5-ea07361b26a8"
 
 int LED_BUILTIN = 5;
 
@@ -50,7 +62,9 @@ const float Pi = 3.14159;
 float theta  = 0.0;
 float sampleRateHz = 8000.0;
 float testFreqHz = 1000.0;
-const float theta_increment = 2.0 * Pi * (testFreqHz / sampleRateHz);
+//const float theta_increment = 2.0 * Pi * (testFreqHz / sampleRateHz);
+float theta_increment;
+
 
 float volume = 0.5;
 
@@ -62,6 +76,7 @@ volatile boolean pingCore1 = true;
 
 volatile boolean sampling = false;
 volatile boolean outputEnable = true;
+
 
 TaskHandle_t Task1;
 SemaphoreHandle_t newFrame;
@@ -76,6 +91,35 @@ void IRAM_ATTR onTimer()
   portEXIT_CRITICAL_ISR(&timerMux);
 
 }
+
+class MyCallbacks: public BLECharacteristicCallbacks {
+    void onWrite(BLECharacteristic *pCharacteristic) {
+      std::string value = pCharacteristic->getValue();
+
+// not very safe code
+       char tempc[4];
+ 
+
+      if (value.length() > 0) {
+        Serial.println("*********");
+        Serial.print("New value: ");
+        for (int i = 0; i < value.length(); i++)
+        {
+          //Serial.print(value[i]);
+          tempc[i] = value[i];
+        }
+
+        //float f = (float) atof(tempc);
+        float f = strtod(tempc,NULL);
+        if( (f>30) && (f<=3000) )
+            testFreqHz = f;
+            
+        Serial.println(f);
+        Serial.println("*********");
+      }
+    }
+};
+
 
 void setup()
 {
@@ -124,6 +168,31 @@ void setup()
   {
     Serial.println("Error, an unknown error occurred");
   }
+
+
+
+
+  BLEDevice::init("MyESP32");
+  BLEServer *pServer = BLEDevice::createServer();
+
+  BLEService *pService = pServer->createService(SERVICE_UUID);
+
+  BLECharacteristic *pCharacteristic = pService->createCharacteristic(
+                                         CHARACTERISTIC_UUID,
+                                         BLECharacteristic::PROPERTY_READ |
+                                         BLECharacteristic::PROPERTY_WRITE
+                                       );
+
+  pCharacteristic->setCallbacks(new MyCallbacks());
+
+  pCharacteristic->setValue("Hello World");
+  pService->start();
+
+  BLEAdvertising *pAdvertising = pServer->getAdvertising();
+  pAdvertising->start();
+
+
+  
 
   Serial.print("Setup: Executing on core ");
   Serial.println(xPortGetCoreID());
@@ -228,6 +297,7 @@ void frameProcessing( void* parameter )
     digitalWrite(LED_BUILTIN, HIGH);
     // don't need to give it back
     //xSemaphoreGive(newFrame);
+    theta_increment = 2.0 * Pi * (testFreqHz * 0.000125);
 
     // frame processing takes place here:
     for (int i = 0; i < N; ++i)
