@@ -87,5 +87,7 @@ An ADC_ATTEN_11db pad is set in order to run the mic at 3.3 Volts
 3/15/18 modified sine generator with nkolban's BLE library. Select freq of sine over BLE (30-3000 Hz UTF-8 
 unsigned int string < 5 chars).   https://youtu.be/MGNU7COFlT4
 
+3/21/18 Voice Alert example. Audio samples stored as an array in the source. File edited in Audacity (Audacity.com) and saved as mono, 8Ksps, signed 16-bit PCM Microsoft WAV file. Converted to C source with xxd =i fn.wav fn.c
+
 ![BlockDiagram](/ESP32AudioFrameworkBlock.png)
 # ESP32_AudioFramework
