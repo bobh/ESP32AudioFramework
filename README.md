@@ -89,5 +89,7 @@ unsigned int string < 5 chars).   https://youtu.be/MGNU7COFlT4
 
 3/21/18 Voice Alert example. Audio samples stored as an array in the source. File edited in Audacity (Audacity.com) and saved as mono, 8Ksps, signed 16-bit PCM Microsoft WAV file. Converted to C source with xxd -i fn.wav fn.c
 
+3/24/18 Project completed and Summary.md posted.
+
 ![BlockDiagram](/ESP32AudioFrameworkBlock.png)
 # ESP32_AudioFramework
