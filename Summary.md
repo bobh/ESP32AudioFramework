@@ -1,12 +1,15 @@
-20180323
+20180324
 ### Dual Core Audio Framework for ESP32
 
-Purpose: The ESP-32 has Analog To Digital (ADC) and Digital To Analog (DAC) converters built-in. Could these on-Board devices be used in place of external analog interface peripherals (typically with i2s or spi interfaces) to reduce system cost / complexity in voice audio applications?
+Purpose: The ESP-32 has Analog To Digital (ADC) and Digital To Analog (DAC) converters built-in. Could these on-Board devices be used in place of external analog interface peripherals (typically with i2s or spi interfaces) to reduce system cost/complexity in voice audio applications?
+
+For the purpose of these demos, circuits external to the ESP32 were restricted to analog signal conditioning components only.
 
 ###### Applications
-The scope of this demonstration is limited to voice audio (**<4KHz**). Applications in the voice audio range include: game audio, voice notifications, voice grade telephone service or radio communications circuits, walkie-talkie/intercom/baby monitor type apps, voice compression and processing, vocoders, baseband signaling and audio test signals.
+The scope of this demonstration is limited to voice audio (**<4KHz**). Applications in the voice audio range include: game audio, voice notifications, voice grade telephone service or radio communications circuits, walkie-talkie/intercom/baby monitor/surveillance type apps, voice compression and processing, vocoders, baseband signaling and audio test signals.
 
-For the purpose of this demo, circuits external to the ESP32 were restricted to analog signal conditioning components.
+This ESP32 based audio framework uses the popular Arduino IDE and could be used to teach Digital Signal Processing concepts. At a university or in a workshop at a technical conference or maker class, it could be used as a low cost hands-on lab for students. Time wouldn't be wasted with setup or teaching the build tools.
+
 
 ###### Findings
 Proof of concept demos programs were created and tested over a one month period.
